@@ -1,0 +1,166 @@
+{
+  "identity": {
+    "role": "E1 - The Anti-AI Designer",
+    "mission": "Create a 'Peace Within' app that feels like a digital sanctuary—grounded, organic, and deeply human. Reject generic 'tech' aesthetics for tactile, pottery-like warmth.",
+    "principles": [
+      "Fusion: Botany x Swiss Minimalism",
+      "Emotion First: Every screen is a breathing exercise",
+      "Content is King: Typography and negative space tell the story",
+      "Imperfection: Use grain, asymmetry, and soft shapes to feel handmade"
+    ]
+  },
+  "app_context": {
+    "name": "Peace Within",
+    "platform": "React Native (Expo) + NativeWind (Tailwind)",
+    "theme_mode": "Light (Primary) / Soft Dark (Secondary)",
+    "target_audience": "Seekers of mental wellness, spiritual grounding, and anxiety relief."
+  },
+  "design_system": {
+    "typography": {
+      "font_family_headings": "Playfair Display, serif",
+      "font_family_body": "Lato, system-ui, sans-serif",
+      "scale": {
+        "h1": "text-4xl font-serif font-medium tracking-tight text-earth-800",
+        "h2": "text-3xl font-serif font-medium tracking-tight text-earth-800",
+        "h3": "text-2xl font-serif font-medium text-earth-700",
+        "body_lg": "text-lg font-sans text-earth-600 leading-relaxed",
+        "body_md": "text-base font-sans text-earth-600 leading-relaxed",
+        "caption": "text-sm font-sans text-earth-400 uppercase tracking-widest"
+      },
+      "rules": "Avoid 'Inter'. Use Serif for all emotive headers (Affirmations, Quotes). Use Sans for UI (Settings, forms)."
+    },
+    "colors": {
+      "palette": {
+        "primary": {
+          "DEFAULT": "#4A6741",
+          "light": "#7C9A6F",
+          "dark": "#2E4228",
+          "foreground": "#FFFFFF"
+        },
+        "secondary": {
+          "DEFAULT": "#C18C5D",
+          "light": "#D8B493",
+          "dark": "#8C6239",
+          "foreground": "#FFFFFF"
+        },
+        "background": {
+          "DEFAULT": "#F9F7F2",
+          "paper": "#FFFFFF",
+          "subtle": "#F2EBE3"
+        },
+        "text": {
+          "primary": "#2D332A",
+          "secondary": "#5C6159",
+          "muted": "#8F948B"
+        },
+        "mood": {
+          "stressed": "#E07A5F",
+          "calm": "#81B29A",
+          "sad": "#7E9CB6",
+          "angry": "#D05353",
+          "happy": "#F2CC8F"
+        }
+      },
+      "usage": "Backgrounds must be off-white (#F9F7F2) or Warm Sand. NEVER pure white (#FFFFFF) for main backgrounds, only for cards. Text is Soft Charcoal (#2D332A), never black."
+    },
+    "layout": {
+      "spacing_scale": "p-4, p-6, p-8, p-12 (Generous padding)",
+      "radius": "rounded-3xl (Cards), rounded-full (Buttons)",
+      "grid_strategy": "Bento Grid for Dashboard. Soft, asymmetrical cards.",
+      "safe_area": "Always wrap main content in SafeAreaView. Use `flex-1 bg-background`."
+    },
+    "components": {
+      "buttons": {
+        "primary": "bg-primary rounded-full px-8 py-4 shadow-sm active:scale-95 transition-all",
+        "secondary": "bg-secondary/10 text-secondary rounded-full px-6 py-3",
+        "ghost": "text-primary font-medium"
+      },
+      "cards": {
+        "base": "bg-white rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-stone-100",
+        "interactive": "active:scale-[0.98] transition-transform"
+      },
+      "inputs": {
+        "base": "bg-stone-50 border border-stone-200 rounded-2xl p-4 text-earth-800 placeholder-earth-300 focus:border-primary focus:bg-white"
+      }
+    },
+    "visual_enhancers": {
+      "textures": "Use subtle noise overlays (opacity 0.03) on backgrounds to feel like paper.",
+      "shadows": "Soft, diffuse shadows. Avoid sharp drops. IOS: shadow-opacity-5. Android: elevation-2.",
+      "icons": "Use 'Lucide React Native' with thin strokes (1.5px). Color: Primary or Earth-600."
+    },
+    "motion": {
+      "type": "Slow, organic, fluid.",
+      "interactions": "Cards 'breathe' (scale up slightly) on press. Lists fade in with stagger."
+    }
+  },
+  "assets": {
+    "image_urls": {
+      "hero_backgrounds": [
+        {
+          "url": "https://images.unsplash.com/photo-1764669083480-1b8dd1ba531e?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "category": "abstract_sand",
+          "desc": "Ripples in wet sand - Perfect for Login/Welcome background"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1760094129188-d8f0fa42ccad?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "category": "forest_light",
+          "desc": "Sunlight in forest - Perfect for 'Morning Affirmation' background"
+        }
+      ],
+      "mood_visuals": [
+        {
+          "url": "https://images.unsplash.com/photo-1764066183490-659fd688e6aa?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "category": "texture_warm",
+          "desc": "Abstract orange/brown - Good for 'Energy' or 'Passion' mood"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1654371138426-1cc4d3584597?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "category": "water_calm",
+          "desc": "Aerial lake view - Good for 'Calm' or 'Sad' mood"
+        }
+      ],
+      "silhouettes": [
+        {
+          "url": "https://images.unsplash.com/photo-1760970962933-59e374b70cdc?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "category": "person_standing",
+          "desc": "Silhouette by ocean - Profile or Meditation placeholder"
+        }
+      ]
+    }
+  },
+  "implementation_rules": {
+    "react_native_specifics": [
+      "CRITICAL: Use `<View>`, `<Text>`, `<TouchableOpacity>`, `<Image>` from 'react-native'. DO NOT use `div`, `span`, `h1`.",
+      "Use `SafeAreaView` from 'react-native-safe-area-context'.",
+      "Use `Link` from 'expo-router' for navigation.",
+      "Use `className` prop (NativeWind) for styling.",
+      "For shadows on Android, add `elevation` class or style.",
+      "Avoid absolute positioning unless necessary for overlays.",
+      "Ensure touch targets are at least 44x44px (p-4 usually handles this)."
+    ],
+    "clean_code": [
+      "Extract repeatable UI parts into `components/ui` (e.g., `Button.tsx`, `Card.tsx`).",
+      "Keep screens in `app/` simple, move logic to hooks if complex."
+    ],
+    "accessibility": [
+      "All interactive elements MUST have `accessibilityLabel`.",
+      "Text must meet contrast ratio (Sage Green on Off-White is good, but check lighter greens)."
+    ]
+  },
+  "instructions_to_main_agent": {
+    "step_1": "Setup NativeWind theme in `tailwind.config.js` with the provided color palette.",
+    "step_2": "Create base UI components (`Typography`, `Button`, `Card`, `Input`) in `components/ui/` implementing the E1 design rules.",
+    "step_3": "Build Auth Screens (Login/Signup) using the 'abstract_sand' background and glassmorphism cards.",
+    "step_4": "Build Home Screen (Dashboard) with Bento Grid layout for 'Daily Affirmation', 'Mood Check-in', and 'Progress'.",
+    "step_5": "Implement Mood Check-in flow (BottomSheet or dedicated screen) with large, tappable mood indicators.",
+    "step_6": "Integrate AI Chat interface using a clean, message-bubble UI (Green for User, Gray for AI).",
+    "step_7": "Ensure all text is styled with the specific font families (Serif for headers, Sans for body)."
+  },
+  "UNIVERSAL_GUIDELINES": [
+    "Do not use gradients for main backgrounds; use solid earth tones or subtle textures.",
+    "Use 24px-32px rounded corners for a soft, friendly feel.",
+    "Avoid default system blue. Use the defined Primary Green or Secondary Clay.",
+    "Animations: specific transitions (opacity, transform) only. No `transition-all`.",
+    "Test IDs: All interactables must have `data-testid` (or `testID` in RN)."
+  ]
+}
