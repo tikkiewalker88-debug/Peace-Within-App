@@ -19,6 +19,7 @@ export default function TabsLayout() {
         name="home"
         options={{
           title: 'Home',
+          tabBarTestID: 'tab-home',
           tabBarIcon: ({ color, size }) => <Feather name="home" size={22} color={color} />,
         }}
       />
@@ -26,6 +27,7 @@ export default function TabsLayout() {
         name="chat"
         options={{
           title: 'Chat',
+          tabBarTestID: 'tab-chat',
           tabBarIcon: ({ color, size }) => <Feather name="message-circle" size={22} color={color} />,
         }}
       />
@@ -33,6 +35,7 @@ export default function TabsLayout() {
         name="progress"
         options={{
           title: 'Progress',
+          tabBarTestID: 'tab-progress',
           tabBarIcon: ({ color, size }) => <Feather name="trending-up" size={22} color={color} />,
         }}
       />
@@ -40,6 +43,7 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: 'Profile',
+          tabBarTestID: 'tab-profile',
           tabBarIcon: ({ color, size }) => <Feather name="user" size={22} color={color} />,
         }}
       />

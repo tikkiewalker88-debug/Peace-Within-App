@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
 
-const { width, height } = Dimensions.get('window');
-
 export default function WelcomeScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function WelcomeScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: Math.max(insets.top, 60), paddingBottom: Math.max(insets.bottom, 32) }]}>
       <View style={styles.topSection}>
         <View style={styles.iconCircle}>
           <Feather name="sun" size={48} color="#4A6741" />
@@ -45,15 +45,18 @@ export default function WelcomeScreen() {
 
       <View style={styles.featureList}>
         {[
-          { icon: 'heart', text: 'Daily affirmations tailored to you' },
-          { icon: 'message-circle', text: 'AI-guided wellness conversations' },
-          { icon: 'trending-up', text: 'Track your emotional growth' },
+          { icon: 'heart', text: 'Daily affirmations tailored to you', desc: 'Personalized spiritual encouragement' },
+          { icon: 'message-circle', text: 'AI-guided wellness conversations', desc: 'Advice on relationships & growth' },
+          { icon: 'trending-up', text: 'Track your emotional growth', desc: 'Visualize your journey to peace' },
         ].map((item, i) => (
           <View key={i} style={styles.featureRow}>
             <View style={styles.featureIcon}>
               <Feather name={item.icon as any} size={20} color="#4A6741" />
             </View>
-            <Text style={styles.featureText}>{item.text}</Text>
+            <View style={styles.featureTextWrap}>
+              <Text style={styles.featureText}>{item.text}</Text>
+              <Text style={styles.featureDesc}>{item.desc}</Text>
+            </View>
           </View>
         ))}
       </View>
@@ -66,6 +69,7 @@ export default function WelcomeScreen() {
           activeOpacity={0.8}
         >
           <Text style={styles.primaryBtnText}>Get Started</Text>
+          <Feather name="arrow-right" size={18} color="#FFFFFF" />
         </TouchableOpacity>
         <TouchableOpacity
           testID="login-btn"
@@ -73,7 +77,7 @@ export default function WelcomeScreen() {
           onPress={() => router.push('/(auth)/login')}
           activeOpacity={0.8}
         >
-          <Text style={styles.secondaryBtnText}>Already have an account? Log in</Text>
+          <Text style={styles.secondaryBtnText}>Already have an account? <Text style={styles.secondaryBold}>Log in</Text></Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -85,26 +89,29 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F9F7F2',
     paddingHorizontal: 24,
-    paddingTop: 80,
-    paddingBottom: 40,
   },
   center: { justifyContent: 'center', alignItems: 'center' },
   topSection: {
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 40,
   },
   iconCircle: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     backgroundColor: '#E8EFE5',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
+    ...Platform.select({
+      ios: { boxShadow: '0px 4px 16px rgba(74, 103, 65, 0.12)' },
+      android: { elevation: 4 },
+      web: { boxShadow: '0px 4px 16px rgba(74, 103, 65, 0.12)' },
+    }),
   },
   title: {
-    fontSize: 36,
-    fontWeight: '600',
+    fontSize: 38,
+    fontWeight: '700',
     color: '#2D332A',
     letterSpacing: -0.5,
     marginBottom: 8,
@@ -112,12 +119,12 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 17,
     color: '#5C6159',
-    letterSpacing: 0.2,
+    letterSpacing: 0.3,
   },
   featureList: {
     flex: 1,
     justifyContent: 'center',
-    gap: 20,
+    gap: 14,
   },
   featureRow: {
     flexDirection: 'row',
@@ -125,53 +132,65 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     padding: 18,
     borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 12,
-    elevation: 2,
+    ...Platform.select({
+      ios: { boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.04)' },
+      android: { elevation: 2 },
+      web: { boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.04)' },
+    }),
   },
   featureIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
+    width: 48,
+    height: 48,
+    borderRadius: 16,
     backgroundColor: '#E8EFE5',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
   },
+  featureTextWrap: { flex: 1 },
   featureText: {
-    fontSize: 16,
+    fontSize: 15,
+    fontWeight: '600',
     color: '#2D332A',
-    flex: 1,
+    marginBottom: 3,
+  },
+  featureDesc: {
+    fontSize: 13,
+    color: '#8F948B',
   },
   bottomSection: {
     gap: 12,
-    paddingTop: 24,
+    paddingTop: 20,
   },
   primaryBtn: {
     backgroundColor: '#4A6741',
     paddingVertical: 18,
     borderRadius: 28,
     alignItems: 'center',
-    shadowColor: '#4A6741',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 8,
+    ...Platform.select({
+      ios: { boxShadow: '0px 4px 12px rgba(74, 103, 65, 0.25)' },
+      android: { elevation: 6 },
+      web: { boxShadow: '0px 4px 12px rgba(74, 103, 65, 0.25)' },
+    }),
   },
   primaryBtnText: {
     color: '#FFFFFF',
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   secondaryBtn: {
     paddingVertical: 14,
     alignItems: 'center',
   },
   secondaryBtnText: {
-    color: '#4A6741',
+    color: '#5C6159',
     fontSize: 15,
-    fontWeight: '500',
+  },
+  secondaryBold: {
+    color: '#4A6741',
+    fontWeight: '700',
   },
 });
