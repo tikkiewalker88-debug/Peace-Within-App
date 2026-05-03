@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "peacewithin",
     "userInterfaceStyle": "light",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.peacewithin.app",
