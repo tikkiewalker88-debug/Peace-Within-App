@@ -22,7 +22,8 @@
         "backgroundColor": "#4A6741"
       },
       "edgeToEdgeEnabled": false,
-      "package": "com.peacewithin.app"
+      "package": "com.peacewithin.app",
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro",
